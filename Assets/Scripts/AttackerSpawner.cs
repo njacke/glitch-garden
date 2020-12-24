@@ -4,14 +4,11 @@ using UnityEngine;
 
 public class AttackerSpawner : MonoBehaviour
 {
-
-
     [SerializeField] bool spawn = true;
-
 
     [SerializeField] float minSpawnTime = 1f;
     [SerializeField] float maxSpawnTime = 5f;
-    [SerializeField] Attacker attackerPrefab;
+    [SerializeField] Attacker[] attackerPrefabArray;
 
 
     // Start is called before the first frame update
@@ -26,15 +23,15 @@ public class AttackerSpawner : MonoBehaviour
 
     private void SpawnAttacker()
     {
-        Attacker newAttacker = Instantiate
-            (attackerPrefab, transform.position, transform.rotation)
-            as Attacker;
-        newAttacker.transform.parent = transform;
+        var attackerIndex = Random.Range(0, attackerPrefabArray.Length);
+        Spawn(attackerPrefabArray[attackerIndex]);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Spawn(Attacker myAttacker)
     {
-        
+        Attacker newAttacker = Instantiate
+    (myAttacker, transform.position, transform.rotation)
+    as Attacker;
+        newAttacker.transform.parent = transform;
     }
 }

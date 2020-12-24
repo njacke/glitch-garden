@@ -22,4 +22,10 @@ public class LevelLoader : MonoBehaviour
         yield return new WaitForSeconds(loadDelay);
         SceneManager.LoadScene(1);
     }
+
+    public void LoadYouLose()
+    {
+        SceneManager.LoadScene("Lose Screen");
+    }
+
 }
