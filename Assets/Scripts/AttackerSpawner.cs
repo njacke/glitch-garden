@@ -11,7 +11,7 @@ public class AttackerSpawner : MonoBehaviour
 
     [SerializeField] float minSpawnTime = 1f;
     [SerializeField] float maxSpawnTime = 5f;
-    [SerializeField] GameObject enemy;
+    [SerializeField] Attacker attackerPrefab;
 
 
     // Start is called before the first frame update
@@ -26,7 +26,10 @@ public class AttackerSpawner : MonoBehaviour
 
     private void SpawnAttacker()
     {
-        Instantiate(enemy, transform.position, transform.rotation);
+        Attacker newAttacker = Instantiate
+            (attackerPrefab, transform.position, transform.rotation)
+            as Attacker;
+        newAttacker.transform.parent = transform;
     }
 
     // Update is called once per frame
